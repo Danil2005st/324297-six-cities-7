@@ -7,12 +7,12 @@ function Card() {
         <span>Premium</span>
       </div>
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="#">
+        <a href="/">
           <img className="place-card__image"
             src="img/apartment-01.jpg"
             width="260"
             height="200"
-            alt="Place image"
+            alt="Place"
           />
         </a>
       </div>
@@ -36,7 +36,7 @@ function Card() {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="#">Beautiful &amp; luxurious apartment at great location</a>
+          <a href="/">Beautiful &amp; luxurious apartment at great location</a>
         </h2>
         <p className="place-card__type">Apartment</p>
       </div>
