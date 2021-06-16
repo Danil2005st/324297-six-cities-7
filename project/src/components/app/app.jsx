@@ -9,7 +9,7 @@ import OfferScreen from '../offer-screen/offer-screen';
 import NotFoundScreen from '../not-found-screen/not-found-screen';
 
 function App(props) {
-  const {cards} = props;
+  const {cards, offers} = props;
 
   return (
     <BrowserRouter>
@@ -17,6 +17,7 @@ function App(props) {
         <Route exact path={AppRoute.ROOT}>
           <MainScreen
             cards={cards}
+            offers={offers}
           />
         </Route>
         <Route exact path={AppRoute.FAVORITES}>
@@ -38,6 +39,7 @@ function App(props) {
 
 App.propTypes = {
   cards: PropTypes.array.isRequired,
+  offers: PropTypes.array.isRequired,
 };
 
 export default App;

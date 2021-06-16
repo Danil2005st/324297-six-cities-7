@@ -1,5 +1,6 @@
 import React from 'react';
 import Header from '../header/header';
+import {Link} from 'react-router-dom';
 
 function OfferScreen() {
   return (
@@ -107,7 +108,8 @@ function OfferScreen() {
                 <h2 className="property__host-title">Meet the host</h2>
                 <div className="property__host-user user">
                   <div className="property__avatar-wrapper property__avatar-wrapper--pro user__avatar-wrapper">
-                    <img className="property__avatar user__avatar"
+                    <img
+                      className="property__avatar user__avatar"
                       src="img/avatar-angelina.jpg"
                       width="74"
                       height="74"
@@ -138,7 +140,8 @@ function OfferScreen() {
                   <li className="reviews__item">
                     <div className="reviews__user user">
                       <div className="reviews__avatar-wrapper user__avatar-wrapper">
-                        <img className="reviews__avatar user__avatar"
+                        <img
+                          className="reviews__avatar user__avatar"
                           src="img/avatar-max.jpg"
                           width="54"
                           height="54"
@@ -167,7 +170,8 @@ function OfferScreen() {
                 <form className="reviews__form form" action="#" method="post">
                   <label className="reviews__label form__label" htmlFor="review">Your review</label>
                   <div className="reviews__rating-form form__rating">
-                    <input className="form__rating-input visually-hidden"
+                    <input
+                      className="form__rating-input visually-hidden"
                       name="rating"
                       value="5"
                       id="5-stars"
@@ -179,7 +183,8 @@ function OfferScreen() {
                       </svg>
                     </label>
 
-                    <input className="form__rating-input visually-hidden"
+                    <input
+                      className="form__rating-input visually-hidden"
                       name="rating"
                       value="4"
                       id="4-stars"
@@ -191,7 +196,8 @@ function OfferScreen() {
                       </svg>
                     </label>
 
-                    <input className="form__rating-input visually-hidden"
+                    <input
+                      className="form__rating-input visually-hidden"
                       name="rating"
                       value="3"
                       id="3-stars"
@@ -203,7 +209,8 @@ function OfferScreen() {
                       </svg>
                     </label>
 
-                    <input className="form__rating-input visually-hidden"
+                    <input
+                      className="form__rating-input visually-hidden"
                       name="rating"
                       value="2"
                       id="2-stars"
@@ -215,13 +222,15 @@ function OfferScreen() {
                       </svg>
                     </label>
 
-                    <input className="form__rating-input visually-hidden"
+                    <input
+                      className="form__rating-input visually-hidden"
                       name="rating"
                       value="1"
                       id="1-star"
                       type="radio"
                     />
-                    <label htmlFor="1-star"
+                    <label
+                      htmlFor="1-star"
                       className="reviews__rating-label form__rating-label"
                       title="terribly"
                     >
@@ -230,7 +239,8 @@ function OfferScreen() {
                       </svg>
                     </label>
                   </div>
-                  <textarea className="reviews__textarea form__textarea"
+                  <textarea
+                    className="reviews__textarea form__textarea"
                     id="review"
                     name="review"
                     placeholder="Tell how was your stay, what you like and what can be improved"
@@ -255,9 +265,9 @@ function OfferScreen() {
             <div className="near-places__list places__list">
               <article className="near-places__card place-card">
                 <div className="near-places__image-wrapper place-card__image-wrapper">
-                  <a href="/">
+                  <Link to="/">
                     <img className="place-card__image" src="img/room.jpg" width="260" height="200" alt="Place Screen"/>
-                  </a>
+                  </Link>
                 </div>
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
@@ -279,7 +289,7 @@ function OfferScreen() {
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="/">Wood and stone place</a>
+                    <Link to="/">Wood and stone place</Link>
                   </h2>
                   <p className="place-card__type">Private room</p>
                 </div>
@@ -287,14 +297,15 @@ function OfferScreen() {
 
               <article className="near-places__card place-card">
                 <div className="near-places__image-wrapper place-card__image-wrapper">
-                  <a href="/">
-                    <img className="place-card__image"
+                  <Link to="/">
+                    <img
+                      className="place-card__image"
                       src="img/apartment-02.jpg"
                       width="260"
                       height="200"
                       alt="Place Screen"
                     />
-                  </a>
+                  </Link>
                 </div>
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
@@ -316,7 +327,7 @@ function OfferScreen() {
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="/">Canal View Prinsengracht</a>
+                    <Link to="/">Canal View Prinsengracht</Link>
                   </h2>
                   <p className="place-card__type">Apartment</p>
                 </div>
@@ -324,14 +335,15 @@ function OfferScreen() {
 
               <article className="near-places__card place-card">
                 <div className="near-places__image-wrapper place-card__image-wrapper">
-                  <a href="/">
-                    <img className="place-card__image"
+                  <Link to="/">
+                    <img
+                      className="place-card__image"
                       src="img/apartment-03.jpg"
                       width="260"
                       height="200"
                       alt="Place"
                     />
-                  </a>
+                  </Link>
                 </div>
                 <div className="place-card__info">
                   <div className="place-card__price-wrapper">
@@ -353,7 +365,7 @@ function OfferScreen() {
                     </div>
                   </div>
                   <h2 className="place-card__name">
-                    <a href="/">Nice, cozy, warm big bed apartment</a>
+                    <Link to="/">Nice, cozy, warm big bed apartment</Link>
                   </h2>
                   <p className="place-card__type">Apartment</p>
                 </div>
@@ -365,6 +377,5 @@ function OfferScreen() {
     </div>
   );
 }
-
 
 export default OfferScreen;
