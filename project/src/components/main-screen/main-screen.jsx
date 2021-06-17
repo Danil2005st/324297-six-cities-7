@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Card from '../card/card';
 import Header from '../header/header';
 import {Link} from 'react-router-dom';
+import reviewProp from '../review/review.prop';
+import offerProp from '../offer/offer.prop';
+import OfferList from '../offer-list/offer-list';
 
 function MainScreen(props) {
-  const {cards} = props;
+  const {reviews, offers} = props;
 
   return (
     <div className="page page--gray page--main">
@@ -53,7 +55,7 @@ function MainScreen(props) {
           <div className="cities__places-container container">
             <section className="cities__places places">
               <h2 className="visually-hidden">Places</h2>
-              <b className="places__found">{cards.length} places to stay in Amsterdam</b>
+              <b className="places__found">{reviews.length} places to stay in Amsterdam</b>
               <form className="places__sorting" action="#" method="get">
                 <span className="places__sorting-caption">Sort by</span>
                 <span className="places__sorting-type" tabIndex="0">
@@ -69,11 +71,9 @@ function MainScreen(props) {
                   <li className="places__option" tabIndex="0">Top rated first</li>
                 </ul>
               </form>
-              <div className="cities__places-list places__list tabs__content">
 
-                {cards.map((card) => <Card key={card.id} name={card} />)}
+              <OfferList offers={offers} />
 
-              </div>
             </section>
             <div className="cities__right-section">
               <section className="cities__map map"></section>
@@ -86,7 +86,8 @@ function MainScreen(props) {
 }
 
 MainScreen.propTypes = {
-  cards: PropTypes.array.isRequired,
+  reviews: PropTypes.arrayOf(reviewProp).isRequired,
+  offers: PropTypes.arrayOf(offerProp).isRequired,
 };
 
 export default MainScreen;

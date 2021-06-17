@@ -1,4 +1,4 @@
-export const offers = [
+const offers = [
   {
     bedrooms: 3,
     city: {
@@ -18,9 +18,9 @@ export const offers = [
       name: 'Angelina',
     },
     id: 1,
-    images: ['img/1.png', 'img/2.png'],
-    isFavorite: false,
-    isPremium: false,
+    images: ['img/apartment-01.jpg', 'img/apartment-02.jpg'],
+    isFavorite: true,
+    isPremium: true,
     location: {
       latitude: 52.35514938496378,
       longitude: 4.673877537499948,
@@ -29,7 +29,7 @@ export const offers = [
     maxAdults: 4,
     previewImage: 'img/1.png',
     price: 120,
-    rating: 4.8,
+    rating: 3,
     title: 'Beautiful & luxurious studio at great location',
     type: 'apartment',
   },
@@ -52,7 +52,7 @@ export const offers = [
       name: 'Angelina',
     },
     id: 3,
-    images: ['img/1.png', 'img/2.png'],
+    images: ['img/apartment-02.jpg', 'img/2.png'],
     isFavorite: false,
     isPremium: false,
     location: {
@@ -86,7 +86,7 @@ export const offers = [
       name: 'Angelina',
     },
     id: 5,
-    images: ['img/1.png', 'img/2.png'],
+    images: ['img/apartment-03.jpg', 'img/2.png'],
     isFavorite: false,
     isPremium: false,
     location: {
@@ -120,7 +120,7 @@ export const offers = [
       name: 'Ira',
     },
     id: 6,
-    images: ['img/1.png', 'img/2.png'],
+    images: ['img/apartment-02.jpg', 'img/2.png'],
     isFavorite: true,
     isPremium: false,
     location: {
@@ -136,3 +136,5 @@ export const offers = [
     type: 'apartment',
   },
 ];
+
+export default offers;
