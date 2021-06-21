@@ -1,20 +1,28 @@
-import React from 'react';
+import React, {useState} from 'react';
 import offerProp from './offer.prop';
+import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const';
 
 function Offer(props) {
   const {offerItem} = props;
-  const {rating, price, title, type, images, isPremium, isFavorite} = offerItem;
+  const {rating, price, title, type, images, isPremium, isFavorite, id} = offerItem;
+  const [activeOffer, setActiveOffer] = useState(id);
   const percentage = `${rating * 20}%`;
   const isFavoriteClass = isFavorite ? 'place-card__bookmark-button button place-card__bookmark-button--active' : 'place-card__bookmark-button button';
 
   return (
-    <article className="cities__place-card place-card">
+    <article
+      className="cities__place-card place-card"
+      onMouseEnter={() => {
+        setActiveOffer(activeOffer);
+      }}
+    >
       {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null }
 
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <a href="/">
+        <Link to={`${AppRoute.OFFER}/:${id}`}>
           <img className="place-card__image" src={images[0]} width="260" height="200" alt="Place screen"/>
-        </a>
+        </Link>
       </div>
       <div className="place-card__info">
         <div className="place-card__price-wrapper">
@@ -36,7 +44,7 @@ function Offer(props) {
           </div>
         </div>
         <h2 className="place-card__name">
-          <a href="/">{title}</a>
+          <Link to={`${AppRoute.OFFER}/:${id}`}>{title}</Link>
         </h2>
         <p className="place-card__type">{type}</p>
       </div>

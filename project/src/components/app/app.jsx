@@ -23,9 +23,11 @@ function App(props) {
           />
         </Route>
         <Route exact path={AppRoute.FAVORITES}>
-          <FavoritesScreen />
+          <FavoritesScreen
+            offers={offers}
+          />
         </Route>
-        <Route exact path={AppRoute.OFFER}>
+        <Route path={AppRoute.OFFER}>
           <OfferScreen
             reviews={reviews}
           />
