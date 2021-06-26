@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom';
 import reviewProp from '../review/review.prop';
 import offerProp from '../offer/offer.prop';
 import OfferList from '../offer-list/offer-list';
+import CitiesMap from '../cities-map/cities-map';
 
 function MainScreen(props) {
   const {reviews, offers} = props;
@@ -76,7 +77,7 @@ function MainScreen(props) {
 
             </section>
             <div className="cities__right-section">
-              <section className="cities__map map"></section>
+              <CitiesMap offers={offers} />
             </div>
           </div>
         </div>
