@@ -3,8 +3,8 @@ const offers = [
     bedrooms: 3,
     city: {
       location: {
-        latitude: 52.370216,
-        longitude: 4.895168,
+        latitude: 52.38333,
+        longitude: 4.9,
         zoom: 10,
       },
       name: 'Amsterdam',
@@ -37,8 +37,8 @@ const offers = [
     bedrooms: 3,
     city: {
       location: {
-        latitude: 52.370216,
-        longitude: 4.895168,
+        latitude: 30.370216,
+        longitude: 0.895168,
         zoom: 10,
       },
       name: 'Paris',
@@ -105,9 +105,9 @@ const offers = [
     bedrooms: 4,
     city: {
       location: {
-        latitude: 62.370216,
-        longitude: 5.895168,
-        zoom: 11,
+        latitude: 30.370216,
+        longitude: 0.895168,
+        zoom: 10,
       },
       name: 'Paris',
     },

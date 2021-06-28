@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Header from '../header/header';
 import {Link} from 'react-router-dom';
@@ -6,9 +6,25 @@ import reviewProp from '../review/review.prop';
 import offerProp from '../offer/offer.prop';
 import OfferList from '../offer-list/offer-list';
 import CitiesMap from '../cities-map/cities-map';
+import ListLocations from '../locations-list/locations-list';
+
+function removeDuplicates(myArr, prop) {
+  return myArr.filter((obj, pos, arr) => {
+    return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;
+  });
+}
 
 function MainScreen(props) {
   const {reviews, offers} = props;
+  const cities = offers.map(function (offer) {return (offer.city)});
+  const uniqueCities = removeDuplicates(cities, 'name');
+  const [selectedCity, setSelectedCity] = useState({});
+  const onListItemHover = (listItemName) => {
+    const currentCity = uniqueCities.find((city) =>
+      city.name === listItemName
+    );
+    setSelectedCity(currentCity);
+  };
 
   return (
     <div className="page page--gray page--main">
@@ -17,40 +33,10 @@ function MainScreen(props) {
       <main className="page__main page__main--index">
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
-          <section className="locations container">
-            <ul className="locations__list tabs__list">
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to="/">
-                  <span>Paris</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to="/">
-                  <span>Cologne</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to="/">
-                  <span>Brussels</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item tabs__item--active" to="/">
-                  <span>Amsterdam</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to="/">
-                  <span>Hamburg</span>
-                </Link>
-              </li>
-              <li className="locations__item">
-                <Link className="locations__item-link tabs__item" to="/">
-                  <span>Dusseldorf</span>
-                </Link>
-              </li>
-            </ul>
-          </section>
+          <ListLocations
+            uniqueCities={uniqueCities}
+            onListItemHover={onListItemHover}
+          />
         </div>
         <div className="cities">
           <div className="cities__places-container container">
@@ -77,7 +63,10 @@ function MainScreen(props) {
 
             </section>
             <div className="cities__right-section">
-              <CitiesMap offers={offers} />
+              <CitiesMap
+                uniqueCities={uniqueCities}
+                selectedCity={selectedCity}
+              />
             </div>
           </div>
         </div>

@@ -1,4 +1,4 @@
-import React, {useRef} from 'react';
+import React, {useEffect, useRef} from 'react';
 import leaflet from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import useMap from './useMap';
@@ -7,27 +7,43 @@ import PropTypes from 'prop-types';
 import offerProp from '../offer/offer.prop';
 
 function CitiesMap(props) {
-  const {offers} = props;
+  const {uniqueCities, selectedCity} = props;
   const mapRef = useRef(null);
-  const cities = offers.map(function (offer, index, array) {return (offer.city)});
-  const map = useMap(mapRef, cities[0]);
+  const map = useMap(mapRef, uniqueCities[0]);
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
   });
 
   const currentCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_CURRENT,
-    iconSize: [40, 40],
-    iconAnchor: [20, 40],
+    iconSize: [30, 30],
+    iconAnchor: [15, 30],
   });
+
+  useEffect(() => {
+    if (map) {
+      uniqueCities.forEach((city) => {
+        leaflet
+        .marker({
+          lat: city.location.latitude,
+          lng: city.location.longitude
+        }, {
+          icon: (city.name === selectedCity.name)
+            ? currentCustomIcon
+            : defaultCustomIcon
+        })
+        .addTo(map);
+      });
+    }
+  }, [map, uniqueCities, selectedCity]);
 
   return (
     <section
       className="cities__map map"
-      cities={cities}
+      cities={uniqueCities}
       ref={mapRef}
     />
   );
