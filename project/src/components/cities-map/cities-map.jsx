@@ -4,12 +4,16 @@ import 'leaflet/dist/leaflet.css';
 import useMap from './useMap';
 import {URL_MARKER_DEFAULT, URL_MARKER_CURRENT} from '../../const';
 import PropTypes from 'prop-types';
-import offerProp from '../offer/offer.prop';
 
 function CitiesMap(props) {
-  const {uniqueCities, selectedCity} = props;
+  const {cities, locations, selectedCity} = props;
   const mapRef = useRef(null);
-  const map = useMap(mapRef, uniqueCities[0]);
+
+  const currentCity = cities.filter((city) => city.name === selectedCity);
+  console.log(currentCity[0].location, 'currentCity');
+  console.log(locations[0], 'locations');
+
+  const map = useMap(mapRef, currentCity[0].location);
 
   const defaultCustomIcon = leaflet.icon({
     iconUrl: URL_MARKER_DEFAULT,
@@ -23,34 +27,38 @@ function CitiesMap(props) {
     iconAnchor: [15, 30],
   });
 
+  console.log(selectedCity);
+
   useEffect(() => {
     if (map) {
-      uniqueCities.forEach((city) => {
+      locations.forEach((location) => {
         leaflet
         .marker({
-          lat: city.location.latitude,
-          lng: city.location.longitude
+          lat: location.latitude,
+          lng: location.longitude
         }, {
-          icon: (city.name === selectedCity.name)
-            ? currentCustomIcon
-            : defaultCustomIcon
+          icon: defaultCustomIcon
         })
         .addTo(map);
       });
     }
-  }, [map, uniqueCities, selectedCity]);
+  }, [map, locations, selectedCity]);
 
   return (
     <section
       className="cities__map map"
-      cities={uniqueCities}
+      location={location}
       ref={mapRef}
     />
   );
 }
 
 CitiesMap.propTypes = {
-  offers: PropTypes.arrayOf(offerProp).isRequired,
+  locations: PropTypes.arrayOf(PropTypes.shape({
+    latitude: PropTypes.number.isRequired,
+    longitude: PropTypes.number.isRequired,
+    zoom: PropTypes.number.isRequired,
+  })).isRequired,
 };
 
 export default CitiesMap;

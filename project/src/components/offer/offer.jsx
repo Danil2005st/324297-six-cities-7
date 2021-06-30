@@ -20,7 +20,7 @@ function Offer(props) {
       {isPremium ? <div className="place-card__mark"><span>Premium</span></div> : null }
 
       <div className="cities__image-wrapper place-card__image-wrapper">
-        <Link to={`${AppRoute.OFFER}/:${id}`}>
+        <Link to={`${AppRoute.OFFER}/${id}`}>
           <img className="place-card__image" src={images[0]} width="260" height="200" alt="Place screen"/>
         </Link>
       </div>

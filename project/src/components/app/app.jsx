@@ -11,7 +11,7 @@ import reviewProp from '../review/review.prop';
 import offerProp from '../offer/offer.prop';
 
 function App(props) {
-  const {reviews, offers} = props;
+  const {reviews, offers, cities} = props;
 
   return (
     <BrowserRouter>
@@ -20,6 +20,7 @@ function App(props) {
           <MainScreen
             reviews={reviews}
             offers={offers}
+            mainCities={cities}
           />
         </Route>
         <Route exact path={AppRoute.FAVORITES}>
@@ -46,6 +47,7 @@ function App(props) {
 App.propTypes = {
   reviews: PropTypes.arrayOf(reviewProp).isRequired,
   offers: PropTypes.arrayOf(offerProp).isRequired,
+  cities: PropTypes.array.isRequired,
 };
 
 export default App;

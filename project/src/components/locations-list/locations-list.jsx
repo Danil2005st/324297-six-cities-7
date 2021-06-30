@@ -1,10 +1,11 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import PropTypes from "prop-types";
 
 function ListLocations(props) {
-  const {uniqueCities, onListItemHover} = props;
-  const listItemHoverHandler = (evt) => {
-    onListItemHover(evt.target.innerText);
+  const {uniqueCities, onListItemClick} = props;
+  const listItemClickHandler = (evt) => {
+    onListItemClick(evt.target.innerText);
   };
 
   return (
@@ -14,11 +15,11 @@ function ListLocations(props) {
           return (
             <li
               className="locations__item"
-              key={location.name}
-              onMouseEnter={listItemHoverHandler}
+              key={location}
+              onClick={listItemClickHandler}
             >
               <Link className="locations__item-link tabs__item" to="/">
-                <span>{location.name}</span>
+                <span>{location}</span>
               </Link>
             </li>
           );
@@ -26,6 +27,10 @@ function ListLocations(props) {
       }</ul>
     </section>
   );
+};
+
+ListLocations.propTypes = {
+  uniqueCities: PropTypes.array.isRequired,
 };
 
 export default ListLocations;

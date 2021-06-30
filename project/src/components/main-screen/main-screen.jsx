@@ -1,27 +1,20 @@
 import React, {useState} from 'react';
 import PropTypes from 'prop-types';
 import Header from '../header/header';
-import {Link} from 'react-router-dom';
 import reviewProp from '../review/review.prop';
 import offerProp from '../offer/offer.prop';
 import OfferList from '../offer-list/offer-list';
 import CitiesMap from '../cities-map/cities-map';
 import ListLocations from '../locations-list/locations-list';
 
-function removeDuplicates(myArr, prop) {
-  return myArr.filter((obj, pos, arr) => {
-    return arr.map(mapObj => mapObj[prop]).indexOf(obj[prop]) === pos;
-  });
-}
-
 function MainScreen(props) {
-  const {reviews, offers} = props;
-  const cities = offers.map(function (offer) {return (offer.city)});
-  const uniqueCities = removeDuplicates(cities, 'name');
-  const [selectedCity, setSelectedCity] = useState({});
-  const onListItemHover = (listItemName) => {
-    const currentCity = uniqueCities.find((city) =>
-      city.name === listItemName
+  const {reviews, offers, mainCities} = props;
+  const cities = offers.map((offer) => offer.city);
+  const locations = offers.map((offer) => offer.location);
+  const [selectedCity, setSelectedCity] = useState(mainCities[3]);
+  const onListItemClick = (listItemName) => {
+    const currentCity = mainCities.find((city) =>
+      city === listItemName
     );
     setSelectedCity(currentCity);
   };
@@ -34,8 +27,8 @@ function MainScreen(props) {
         <h1 className="visually-hidden">Cities</h1>
         <div className="tabs">
           <ListLocations
-            uniqueCities={uniqueCities}
-            onListItemHover={onListItemHover}
+            uniqueCities={mainCities}
+            onListItemClick={onListItemClick}
           />
         </div>
         <div className="cities">
@@ -64,7 +57,8 @@ function MainScreen(props) {
             </section>
             <div className="cities__right-section">
               <CitiesMap
-                uniqueCities={uniqueCities}
+                cities={cities}
+                locations={locations}
                 selectedCity={selectedCity}
               />
             </div>
@@ -78,6 +72,7 @@ function MainScreen(props) {
 MainScreen.propTypes = {
   reviews: PropTypes.arrayOf(reviewProp).isRequired,
   offers: PropTypes.arrayOf(offerProp).isRequired,
+  mainCities: PropTypes.array.isRequired,
 };
 
 export default MainScreen;
