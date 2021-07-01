@@ -8,6 +8,27 @@ import FavoriteList from '../favorite-list/favorite-list';
 function FavoritesScreen(props) {
   const {offers} = props;
 
+  const splitOffers = (offers) => {
+    const cities = {};
+
+    offers.forEach((offer) => {
+      if (cities[offer.city.name]) {
+        cities[offer.city.name].offers.push(offer);
+      } else {
+        cities[offer.city.name] = {
+          city: offer.city.name,
+          offers: [offer]
+        };
+      }
+    });
+    return Array.from(Object.values(cities));
+  }
+
+  const splitOffersList = splitOffers(offers);
+  console.log(splitOffers(offers));
+
+
+
   return (
     <div className="page">
       <Header />
@@ -17,9 +38,14 @@ function FavoritesScreen(props) {
           <section className="favorites">
             <h1 className="favorites__title">Saved listing</h1>
             <ul className="favorites__list">
-              {offers.filter((offer) => offer.isFavorite).map((filteredOffer) => (
-                <FavoriteList key={filteredOffer.id} offerItem={filteredOffer} />
+
+              {splitOffersList.map((cityOffersList) => (
+              <FavoriteList key={cityOffersList.city} cityOffers={cityOffersList} />
               ))}
+
+              {/*{offers.filter((offer) => offer.isFavorite).map((filteredOffer) => (
+                <FavoriteList key={filteredOffer.id} offerItem={filteredOffer} />
+              ))}*/}
             </ul>
           </section>
         </div>

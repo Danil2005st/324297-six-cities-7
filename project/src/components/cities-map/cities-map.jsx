@@ -8,11 +8,7 @@ import PropTypes from 'prop-types';
 function CitiesMap(props) {
   const {cities, locations, selectedCity} = props;
   const mapRef = useRef(null);
-
   const currentCity = cities.filter((city) => city.name === selectedCity);
-  console.log(currentCity[0].location, 'currentCity');
-  console.log(locations[0], 'locations');
-
   const map = useMap(mapRef, currentCity[0].location);
 
   const defaultCustomIcon = leaflet.icon({
@@ -26,8 +22,6 @@ function CitiesMap(props) {
     iconSize: [30, 30],
     iconAnchor: [15, 30],
   });
-
-  console.log(selectedCity);
 
   useEffect(() => {
     if (map) {
