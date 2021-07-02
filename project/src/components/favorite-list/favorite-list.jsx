@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import offerProp from '../offer/offer.prop';
 import {AppRoute} from '../../const';
@@ -7,11 +8,7 @@ import FavoriteListItem from '../favorite-list-item/favorite-list-item';
 function FavoriteList(props) {
   const {cityOffers} = props;
 
-  console.log(cityOffers, 'cityOffers')
- //const {rating, price, title, type, images, id} = offerItem;
- // const percentage = `${rating * 20}%`;
-
-  return (
+ return (
     <li className="favorites__locations-items">
       <div className="favorites__locations locations locations--current">
         <div className="locations__item">
@@ -30,7 +27,10 @@ function FavoriteList(props) {
 }
 
 FavoriteList.propTypes = {
-  cityOffers: offerProp,
+  cityOffers: PropTypes.shape({
+    city: PropTypes.string.isRequired,
+    offers: PropTypes.arrayOf(offerProp).isRequired,
+  })
 };
 
 

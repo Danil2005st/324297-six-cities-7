@@ -25,9 +25,6 @@ function FavoritesScreen(props) {
   }
 
   const splitOffersList = splitOffers(offers);
-  console.log(splitOffers(offers));
-
-
 
   return (
     <div className="page">
@@ -43,9 +40,6 @@ function FavoritesScreen(props) {
               <FavoriteList key={cityOffersList.city} cityOffers={cityOffersList} />
               ))}
 
-              {/*{offers.filter((offer) => offer.isFavorite).map((filteredOffer) => (
-                <FavoriteList key={filteredOffer.id} offerItem={filteredOffer} />
-              ))}*/}
             </ul>
           </section>
         </div>

@@ -28,11 +28,12 @@ function App(props) {
             offers={offers}
           />
         </Route>
-        <Route path={AppRoute.OFFER}>
-          <OfferScreen
-            reviews={reviews}
-          />
-        </Route>
+        <Route
+          path='/offer/:id'
+          render={(serviceProps) => (
+            <OfferScreen reviews={reviews} offers={offers} offerId={serviceProps.match.params.id} />
+          )}
+        />
         <Route exact path={AppRoute.LOGIN}>
           <LoginScreen />
         </Route>

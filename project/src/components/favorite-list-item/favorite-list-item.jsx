@@ -1,11 +1,13 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
+import {AppRoute} from '../../const';
+import offerProp from "../offer/offer.prop";
 
 function FavoriteListItem(props) {
-  //const {cityOffers} = props;
+  const {offer} = props;
 
-  //const {rating, price, title, type, images, id} = offerItem;
-  // const percentage = `${rating * 20}%`;
+  const {rating, price, title, type, images, id, bedrooms} = offer;
+  const percentage = `${rating * 20}%`;
 
   return (
     <article className="favorites__card place-card">
@@ -49,8 +51,7 @@ function FavoriteListItem(props) {
 }
 
 FavoriteListItem.propTypes = {
-
+  offer: offerProp,
 };
-
 
 export default FavoriteListItem;
